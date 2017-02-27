@@ -15,5 +15,8 @@ let folder = {
 }*/
 
 module.exports = {
-	folder: folder
+	folder: folder,
+	alias: [{
+		module: 'page.module'
+	}]
 }
