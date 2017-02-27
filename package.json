@@ -1,0 +1,16 @@
+{
+  "name": "create-tree",
+  "version": "1.0.0",
+  "description": "Help to creating a work dir tree. ",
+  "main": "index.js",
+  "bin": {
+    "create-tree": "./bin/create-tree"
+  },
+  "scripts": {
+  },
+  "author": "cjj",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^6.6.0"
+  }
+}
