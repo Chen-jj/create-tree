@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="x5-cache" content="disable" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <script>
+      window._PFM_TIMING = [[317, new Date()]]
+      window.imageLoaded = (function() {
+          var i = 0
+          return function() {
+              var total = document.querySelectorAll('[onload="imageLoaded()"]').length
+              if (++i == total) _PFM_TIMING[5] = new Date()
+              if (i == 1) _PFM_TIMING[6] = new Date()
+          }
+      })()
+  </script>
+  <!--#include virtual="/sinclude/common/head_dns_prefetch.shtml"-->
+  <!--#include virtual="/sinclude/cssi/fd/h5/wx//index.shtml"-->
+  <script> _PFM_TIMING[1] = new Date() </script>
+</head>
+<body>
+  <!--#include virtual="/sinclude/common/head_inc.shtml"-->
+
+  <!-- S 首屏JS直出 -->
+  <!--#include virtual="/sinclude/jsi/wxsq/lib/vendor.inline.shtml"-->
+  <!--       #include virtual="/sinclude/jsi/wxsq/worldwide_v2/preloadindex.inline.shtml"-->
+  <!-- E 首屏JS直出 -->
+  
+  <div id="navContainer"></div><!-- 用于底部侧边导航，wq.lib.sidenav -->
+
+  <!-- 促销图标添加类名 wx_search_promote -->
+  <div id="topsearchbar" class="wx_search wx_search_chanel_mode wx_search_v2 wx_search_bnr_mode" data-wxadid="91" data-ruleid="249" data-hotrd="137451.1.3" data-searchrd="137451.1.2" data-placeholder="">
+      <div class="wx_search_inner">
+          <div class="wx_bar_cate">
+              <span id="__cate" ptag="137451.1.1" class="icon_cate"></span>
+          </div>
+          <form action="" method="get" class="wx_search_form" onsubmit="return false;">
+              <input name="key" class="wx_search_txt" placeholder="" ptag="137451.1.2" type="search" id="topSearchTxt" autocomplete="off">
+              <div class="wx_search_txt_corner"  id="search_bar_chris_2016" style="display:none">
+                  <div class="xmas_papa">
+                      <div class="hat"></div><div class="eye"></div>
+                      <div class="hand"></div><div class="body"></div>
+                  </div>
+               </div>
+              <a class="wx_search_clear" href="javascript:;" id="topSearchClear" style="display: none;">x</a>
+          </form>
+          <div class="wx_search_act">
+              <a href="javascript:;" class="wx_search_pt" id="topCurtainBtn" style="display:none"></a>
+              <a href="javascript:;" id="topSearchbtn" class="wx_search_ov" style="display:none"></a>
+              <span id="topSearchCbtn" class="wx_search_btn" style="display:none">取消</span>
+          </div>
+      </div>
+  </div>
+  <!-- /wx_search -->
+
+  <!--#include virtual="/sinclude/common/head_wx_searchbar.shtml" -->
+
+  <div class="wx_wrap">
+
+    <!--#include virtual="/sinclude/common/foot_wx_level2.shtml"-->
+
+    <!-- S 公共floating组件 -->
+    <!--#include virtual="/sinclude/common/wx_aside_floating.shtml"-->
+    <!-- E 公共floating组件 -->
+  </div>
+  
+  <div id="back_to_top"><back-to-top></back-to-top></div>
+
+  <script>if (location.href.indexOf('DEBUG') != -1) { localStorage.clear(); sessionStorage.clear(); }</script>
+  <script>
+    window.shareConfig = {
+        title   : '',
+        desc    : '',
+        link    : location.href,
+        img_url : '',
+        img_width: 100,
+        img_heigth: 100
+    }
+    window._wxfootconfig = {
+        hot: {
+            accountrd: ""
+        },
+        search: {
+            index: 2,
+            con: 'searchfoot',
+            placeholder: '搜索 ',
+        },
+        //erweimaurl: ''
+    }
+    window._navfoot = {
+        manual: true,
+        backToOther: true
+    }
+    window.GLOBAL_PROMOTE_SIDE_NAVE=true;
+  </script>
+
+  <!--#include virtual="/sinclude/jsi/wxsq//index.async.shtml"-->
+
+  <!--#include virtual="/sinclude/common/foot.shtml"-->
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      _PFM_TIMING[2] = new Date()
+  })
+  window.addEventListener('load', function() {
+      _PFM_TIMING[4] = new Date()
+  })
+  </script>
+
+  <!--#include virtual="/sinclude/common/spdtimming_foot.shtml"-->
+
+</body>
+</html>

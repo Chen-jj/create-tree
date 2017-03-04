@@ -8,12 +8,10 @@ const conf     = require(path.join(rootPath, './ctree.config.js'))
 
 let args = argv._ || [];
 
-if (conf.alias.length) {
-	for (let i = 0; i < conf.alias.length; i++) {
-		for (alias in conf.alias[i]) {
-			if (argv[alias]) {
-				args.push(conf.alias[i][alias] + ":" + argv[alias]);
-			}
+if (conf.alias) {
+	for (let alias in conf.alias) {
+		if (argv[alias]) {
+			args.push(conf.alias[alias] + ":" + argv[alias]);
 		}
 	}
 }

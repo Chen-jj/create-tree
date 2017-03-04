@@ -11,12 +11,12 @@ let folder = {
 	}
 }
 
-/*template = {
-}*/
-
 module.exports = {
 	folder: folder,
-	alias: [{
+	alias: {
 		module: 'page.module'
-	}]
+	}
+	// template: [{
+	// 	"page.module:index"
+	// }]
 }

@@ -6,10 +6,24 @@
   "bin": {
     "create-tree": "./bin/create-tree"
   },
-  "scripts": {},
+  "scripts": {
+    "clean": "cd test && rm -rf page",
+    "test": "cd test && rm -rf page && ../bin/create-tree"
+  },
   "author": "cjj",
   "license": "ISC",
   "dependencies": {
     "yargs": "^6.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chen-jj/create-tree.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Chen-jj/create-tree/issues",
+    "email": "798095202@qq.com"
   }
 }
