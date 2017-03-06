@@ -10,15 +10,13 @@ let args = argv._ || [];
 
 if (conf.alias) {
 	for (let alias in conf.alias) {
-		if (argv[alias]) {
-			args.push(conf.alias[alias] + ":" + argv[alias]);
-		}
+		if (argv[alias]) args.push(conf.alias[alias] + ":" + argv[alias]);
 	}
 }
 
 try {
 	parseArgv(conf.folder, args);
-	parseTree(conf.folder, rootPath);
+	parseTree(conf.folder, conf.templates, rootPath);
 } catch(err) {
 	console.log(err);
 }

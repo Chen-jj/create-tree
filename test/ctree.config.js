@@ -15,8 +15,8 @@ module.exports = {
 	folder: folder,
 	alias: {
 		module: 'page.module'
-	}
-	// template: [{
-	// 	"page.module:index"
-	// }]
+	},
+	templates: [
+		"/page/module/index.shtml"
+	]
 }
