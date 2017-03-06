@@ -1,6 +1,6 @@
 const isObject = require('../utils/isObject');
 
-function parseArgv (folder, argv) {
+function parseArgv (folder, templates, argv, tplMap) {
 	let reg = /^([^.:]+\.)+[^.:]+:[^.:]+$/;
 
 	for (let i = 0; i < argv.length; i++) {
@@ -31,11 +31,24 @@ function parseArgv (folder, argv) {
 				delete obj[dirPath[j]];
 
 				// 一旦更换文件夹名字成功，必须把接下来的含此已修改路径的alias的路径改写
-				let dirPathStr = dirPath.join('.');
+				let dirPathStr = dirPath.join('.') + '.';
 				for (let k = i + 1; k < argv.length; k++) {
-					let index = argv[k].indexOf(dirPathStr);
-					if (index >= 0 && argv[k][index + dirPathStr.length] == '.') {
+					if (argv[k].indexOf(dirPathStr) >= 0) {
 						argv[k] = argv[k].replace(dirPathStr, dirPathStr.replace(dirPath[j], newKey));
+					}
+				}
+				// 同时含此路径的templates的路径也该改写
+				dirPathStr = '/' + dirPath.join('/');
+				for (let k = 0; k < templates.length; k++) {
+					// 可能是路径被改写
+					if (templates[k].indexOf(dirPathStr + '/') >= 0) {
+						dirPathStr = dirPathStr + '/';
+						templates[k] = templates[k].replace(dirPathStr, dirPathStr.replace(dirPath[j], newKey));
+					} else if (templates[k].indexOf(dirPathStr + '.') >= 0) {// 也可能是文件名直接被改写
+						dirPathStr = dirPathStr + '.';
+						templates[k] = templates[k].replace(dirPathStr, dirPathStr.replace(dirPath[j], newKey));
+						// 保留新旧文件名的映射，新名字文件还是使用旧名字命名的模版
+						tplMap[newKey] = dirPath[j];
 					}
 				}
 			}

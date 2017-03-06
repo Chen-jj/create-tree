@@ -14,7 +14,9 @@ let folder = {
 module.exports = {
 	folder: folder,
 	alias: {
-		module: 'page.module'
+		module: 'page.module',
+		index: 'page.module.index',
+		mod: 'page.module.mod'
 	},
 	templates: [
 		"/page/module/index.shtml"

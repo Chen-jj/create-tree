@@ -5,7 +5,7 @@ const isObject  = require('../utils/isObject');
 
 const rootPath = process.cwd();
 
-function parseTree(folder, templates, dir) {
+function parseTree(folder, templates, dir, tplMap) {
 	for (let item in folder) {
 
 		// 如果是object, 存在则递归调用、不存在则创建目录然后递归调用
@@ -15,13 +15,13 @@ function parseTree(folder, templates, dir) {
 
 			promisify.fsExists(_dir)
 			.then(() => {
-				parseTree(folder[item], templates, _dir);
+				parseTree(folder[item], templates, _dir, tplMap);
 			})
 			.catch(() => {
 				promisify.fsMkdir(_dir)
 				.then(() => {
 					console.log('create folder: ' + _dir);
-					parseTree(folder[item], templates, _dir);
+					parseTree(folder[item], templates, _dir, tplMap);
 				})
 				.catch((err) => {
 					console.log(err);
@@ -46,8 +46,16 @@ function parseTree(folder, templates, dir) {
 
 					if (file == tar) {
 
-						let basename = path.parse(tar).base;
-						let tpl      = path.join(rootPath, '/ctree_tpl', basename);
+						let tarParse = path.parse(tar), tplFile;
+
+						// 如果template文件名在运行时被修改了，根据映射表，采用config中配置的template
+						if (tplMap[tarParse.name]) {
+							tplFile = tplMap[tarParse.name] + tarParse.ext;
+						} else {
+							tplFile = tarParse.base;
+						}
+
+						let tpl = path.join(rootPath, '/ctree_tpl', tplFile);
 
 						promisify.fsExists(tpl)
 						.then(() => {
@@ -56,7 +64,7 @@ function parseTree(folder, templates, dir) {
 							.pipe(fs.createWriteStream(tar));
 						})
 						.catch(() => {
-							console.log('file: ' + basename + " no exists in folder: ctree_tpl!");
+							console.log('file: ' + tplFile + " no exists in folder: ctree_tpl!");
 						})
 
 						break;

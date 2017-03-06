@@ -6,7 +6,8 @@ const parseArgv = require('./src/parseArgv');
 const rootPath = process.cwd();
 const conf     = require(path.join(rootPath, './ctree.config.js'))
 
-let args = argv._ || [];
+let args = argv._ || [],
+	tplMap = {};
 
 if (conf.alias) {
 	for (let alias in conf.alias) {
@@ -15,8 +16,8 @@ if (conf.alias) {
 }
 
 try {
-	parseArgv(conf.folder, args);
-	parseTree(conf.folder, conf.templates, rootPath);
+	parseArgv(conf.folder, conf.templates, args, tplMap);
+	parseTree(conf.folder, conf.templates, rootPath, tplMap);
 } catch(err) {
 	console.log(err);
 }

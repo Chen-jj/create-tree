@@ -8,7 +8,7 @@
   },
   "scripts": {
     "clean": "cd test && rm -rf page",
-    "test": "cd test && rm -rf page && ../bin/create-tree"
+    "test": "cd test && rm -rf page && ../bin/create-tree --module order --index order --mod mmoodd"
   },
   "author": "cjj",
   "license": "ISC",
