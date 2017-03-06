@@ -14,8 +14,7 @@ package.json:
 {
   "scripts": {
     "ctree": "create-tree",
-  },
-  ...
+  }
 }
 ```
 
