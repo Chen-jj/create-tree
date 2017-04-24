@@ -6,7 +6,7 @@ let folder = {
 			'preloadindex.inline': 'js',
 			'firstscreenindex.inline': 'js',
 			'index.async': 'js',
-			'index': 'shtml'
+			'index': ['shtml', 'json', 'css']
 		}
 	}
 }

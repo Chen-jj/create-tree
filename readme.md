@@ -43,6 +43,18 @@ Then, just run `npm run ctree`, you will create a directory structure in root pa
 
 ![example directory](https://misc.aotu.io/Chen-jj/ctree.png)
 
+***update***
+
+* 2017-4-24: you can now provide a list of ext, create-tree can generate all files of this ext's list.
+
+```js
+let folder = {
+	'index': ['html', 'css', 'js']
+}
+
+module.exports = {folder}
+```
+
 ## configuration
 
 All configurations of create-tree are written in ctree.config.js.This config file should put in where you want to create this directory structure and run create-tree npm script command.

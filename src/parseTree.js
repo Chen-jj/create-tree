@@ -28,54 +28,61 @@ function parseTree(folder, templates, dir, tplMap) {
 				})
 			})
 
-		} else {// 如果是字符串，使用wx方式创建该文件
+		} else {// 如果是字符串，使用wx方式创建该文件  // 增加数组方式 2017-4-24
 
-			if (typeof folder[item] != 'string') {
-				console.log('ext must be string!');
-				continue;
-			}
+			if (Array.isArray(folder[item]) || typeof folder[item] == 'string') {
 
-			let file = path.join(dir, item + '.' + folder[item]);
-
-			promisify.fsOpen(file, 'wx')
-			.then(() => {
-				console.log('create file: ' + file);
-
-				for (let i = 0, len = templates.length; i < len; i++) {
-					let tar  = path.join(rootPath, templates[i]);
-
-					if (file == tar) {
-
-						let tarParse = path.parse(tar), tplFile;
-
-						// 如果template文件名在运行时被修改了，根据映射表，采用config中配置的template
-						if (tplMap[tarParse.name]) {
-							tplFile = tplMap[tarParse.name] + tarParse.ext;
-						} else {
-							tplFile = tarParse.base;
-						}
-
-						let tpl = path.join(rootPath, '/ctree_tpl', tplFile);
-
-						promisify.fsExists(tpl)
-						.then(() => {
-							console.log('start piping template: ' + templates[i]);
-							fs.createReadStream(tpl)
-							.pipe(fs.createWriteStream(tar));
-						})
-						.catch(() => {
-							console.log('file: ' + tplFile + " no exists in folder: ctree_tpl!");
-						})
-
-						break;
-					}
+				if (typeof folder[item] == 'string') {
+					folder[item] = [folder[item]];
 				}
 
+				for (let j = 0; j < folder[item].length; j++) {
+					let file = path.join(dir, item + '.' + folder[item][j]);
 
-			})
-			.catch((err) => {
-				console.log(err);
-			})
+					promisify.fsOpen(file, 'wx')
+					.then(() => {
+						console.log('create file: ' + file);
+
+						for (let i = 0, len = templates.length; i < len; i++) {
+							let tar  = path.join(rootPath, templates[i]);
+
+							if (file == tar) {
+
+								let tarParse = path.parse(tar), tplFile;
+
+								// 如果template文件名在运行时被修改了，根据映射表，采用config中配置的template
+								if (tplMap[tarParse.name]) {
+									tplFile = tplMap[tarParse.name] + tarParse.ext;
+								} else {
+									tplFile = tarParse.base;
+								}
+
+								let tpl = path.join(rootPath, '/ctree_tpl', tplFile);
+
+								promisify.fsExists(tpl)
+								.then(() => {
+									console.log('start piping template: ' + templates[i]);
+									fs.createReadStream(tpl)
+									.pipe(fs.createWriteStream(tar));
+								})
+								.catch(() => {
+									console.log('file: ' + tplFile + " no exists in folder: ctree_tpl!");
+								})
+
+								break;
+							}
+						}
+
+
+					})
+					.catch((err) => {
+						console.log(err);
+					})
+				}
+			} else {
+				console.log('ext must be String or Array!');
+				continue;
+			}
 
 		}
 
