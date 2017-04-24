@@ -1,7 +1,7 @@
 const isObject = require('../utils/isObject');
 
 function parseArgv (folder, templates, argv, tplMap) {
-	let reg = /^([^.:]+\.)+[^.:]+:[^.:]+$/;
+	let reg = /^[^.:]+(\.[^.:]+)*:[^.:]+$/;
 
 	for (let i = 0; i < argv.length; i++) {
 		if (!reg.test(argv[i])) {
