@@ -27,14 +27,18 @@ function parseArgv (folder, templates, argv, tplMap) {
 					throw new Error('Final argv target error: ' + dirPath[j]);
 					return;
 				}
-				obj[newKey] = temp;
 				delete obj[dirPath[j]];
+				obj[newKey] = temp;
 
 				// 一旦更换文件夹名字成功，必须把接下来的含此已修改路径的alias的路径改写
 				let dirPathStr = dirPath.join('.') + '.';
 				for (let k = i + 1; k < argv.length; k++) {
 					if (argv[k].indexOf(dirPathStr) >= 0) {
-						argv[k] = argv[k].replace(dirPathStr, dirPathStr.replace(dirPath[j], newKey));
+						let tempDirPath = dirPath.slice();
+						tempDirPath[j] = newKey;
+						let tempStr = tempDirPath.join('.') + '.';
+
+						argv[k] = argv[k].replace(dirPathStr, tempStr);
 					}
 				}
 				// 同时含此路径的templates的路径也该改写
